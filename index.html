@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Administrator & Low Level Developer</title>
+    <title>Matteo Mathieu</title>
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -27,13 +27,21 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        header {
+		header {
             margin-bottom: 3rem;
             border-bottom: 1px solid var(--text-color);
             padding-bottom: 1rem;
+        }
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: var(--highlight-color);
+			margin-top: -3%
         }
         .lang-switch {
             display: flex;
@@ -43,16 +51,25 @@
         .lang-btn {
             background: none;
             border: 1px solid var(--text-color);
-            padding: 0.5rem;
+            padding: 0.25rem;
             cursor: pointer;
-            font-size: 1.2rem;
             border-radius: 4px;
+            width: 40px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .lang-btn:hover {
             background-color: var(--accent-color);
         }
         .lang-btn.active {
             background-color: var(--accent-color);
+        }
+        .lang-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         .terminal-prompt::before {
             content: "$ ";
@@ -116,10 +133,20 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="terminal-prompt">Matteo Mathieu / tr0gi</h1>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="switchLang('en')">🇺🇸</button>
-                <button class="lang-btn" onclick="switchLang('fr')">⚜️</button>
+            <div class="header-top">
+                <h1 class="terminal-prompt">Matteo Mathieu / tr0gi</h1>
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="switchLang('en')">
+                        <img src="USA.svg" alt="English">
+                    </button>
+                    <button class="lang-btn" onclick="switchLang('fr')">
+                        <img src="Quebec.svg" alt="Français">
+                    </button>
+                </div>
+            </div>
+            <div class="header-subtitle">
+                <span lang="en">Low-Level Programmer & System Administrator</span>
+                <span lang="fr">Programmeur bas niveau & Administrateur système</span>
             </div>
         </header>
         <main>
@@ -127,8 +154,8 @@
                 <h2 class="terminal-prompt">whoami</h2>
                 <div class="whoami-container">
                     <div>
-                        <p lang="en">I strive to make the internet a freer and safer place, on a global scale. I proudly live in Québec, Canada</p>
-                        <p lang="fr">Je m'efforce de rendre l'internet plus libre et plus sûr, à l'échelle mondiale. Je vis fièrement au Québec, Canada</p>
+                        <p lang="en">I strive to make the internet a freer and safer place on a global scale. I proudly live in Québec, Canada</p>
+                        <p lang="fr">Je m'efforce de rendre l'internet plus libre et plus sécuritaire à l'échelle mondiale. Je vis fièrement au Québec, Canada</p>
                         <div class="quote">
                             <span lang="en">"Praise the threats and upgrade the standards" - Me</span>
                             <span lang="fr">"Louangez les menaces et améliorez les standards" - Moi</span>
@@ -138,7 +165,7 @@
                 </div>
             </div>
             <div class="section">
-                <h2 class="terminal-prompt">skills --list</h2>
+                <h2 class="terminal-prompt">ls skills</h2>
                 <div class="skills">
                     <span class="skill-tag">Rust</span>
                     <span class="skill-tag">PHP</span>
@@ -158,23 +185,23 @@
             </div>
         </main>
         <footer>
-            <p>[EOF]<span class="blink">_</span></p>
+            <p>[EOF]</p>
         </footer>
     </div>
 
     <script>
         function switchLang(lang) {
-            // Update language attribute
             document.documentElement.lang = lang;
             
-            // Show/hide elements based on language
             document.querySelectorAll('[lang]').forEach(el => {
                 el.style.display = el.lang === lang ? 'block' : 'none';
             });
-            
-            // Update active button state
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.innerText.includes(lang === 'en' ? '🇺🇸' : '⚜️'));
+
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => {
+                btn.classList.toggle('active', 
+                    lang === 'en' ? btn.querySelector('img').alt === 'English' : btn.querySelector('img').alt === 'Français'
+                );
             });
         }
     </script>
