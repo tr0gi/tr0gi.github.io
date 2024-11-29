@@ -83,16 +83,48 @@
             background-color: var(--accent-color);
             border-radius: 4px;
         }
-        .whoami-container {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
+        .section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            position: relative; /* Add this to make it the positioning context */
         }
+
+        .whoami-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            position: relative; /* Add this to make it the positioning context */
+            padding-right: 220px;
+        }
+
         .profile-img {
+            position: absolute;
+            top: 1rem; /* Match section padding */
+            right: 1rem; /* Match section padding */
             width: 200px;
             height: 200px;
             border: 2px solid var(--text-color);
-            flex-shrink: 0;
+        }
+
+        /* Remove the gap and flex properties from whoami-container since image is now positioned relative to section */
+        .whoami-container {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding-right: 1rem;
+            }
+            
+            .profile-img {
+                position: relative;
+                margin: 1rem auto;
+                top: auto;
+                right: auto;
+            }
         }
         h1, h2 {
             margin-bottom: 1rem;
@@ -129,6 +161,7 @@
             gap: 1.5rem;
             justify-content: center;
             margin: 1rem 0;
+            margin-left: 35%;
         }
         .social-link {
             display: flex;
@@ -136,6 +169,7 @@
             gap: 0.5rem;
             text-decoration: none;
             padding: 0.5rem 1rem;
+            background-color: var(--bg-color);
             border: 1px solid var(--text-color);
             border-radius: 4px;
         }
@@ -170,11 +204,11 @@
             </div>
         </header>
         <main>
-            <div class="section">
+            <div class="whoami-section">
                 <h2 class="terminal-prompt">whoami</h2>
                 <div class="whoami-container">
                     <div>
-                        <p lang="en">I strive to make the internet a freer and safer place on a global scale. I proudly live in Québec, Canada</p>
+                        <p style="padding-right:5%" lang="en">I strive to make the internet a freer and safer place on a global scale. I proudly live in Québec, Canada</p>
                         <p lang="fr">Je m'efforce de rendre l'internet plus libre et plus sécuritaire à l'échelle mondiale. Je vis fièrement au Québec, Canada</p>
                         <div class="quote">
                             <span lang="en">"Praise the threats and upgrade the standards" - Me</span>
@@ -203,7 +237,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17l0 80c0 13.3 10.7 24 24 24l80 0c13.3 0 24-10.7 24-24l0-40 40 0c13.3 0 24-10.7 24-24l0-40 40 0c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/>
                                 </svg>
-                                <span>GPG Key</span>
+                                <span>PGP</span>
                             </a>
                         </div>
                     </div>
